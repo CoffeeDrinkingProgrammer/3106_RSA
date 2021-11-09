@@ -29,8 +29,8 @@
 		</div>
 		<center class="thing">
 			<label> Results:  </label>
-			<div id="code">  </div>
 			<div id="rplain">  </div>
+			<div id="code">  </div>
 		</center>
 	</div>
 
@@ -50,28 +50,26 @@
 			}
 
 			public_key(n, e){ //encrypt
-				var code = "";
+				var enc = "";
 				var arr = Array.from(this.text);
-				
 				console.log(arr);
-
 				arr.forEach((char) => {
+					console.log(char);
 					var m = Math.pow(char.charCodeAt(0), e);
-					console.log(m);
-					console.log((m%n));
-					code += String.fromCharCode((m%n));
+					enc += String.fromCharCode(m%n);
+					console.log(enc);
 				});
-				this.setCode(code);
+				this.setCode(enc);
 			}
 
 			private_key (n, d){ //decrypt
-				var text = "";
+				var dec = "";
 				var arr = Array.from(this.code);
 				arr.forEach((char) => {
 					var m = Math.pow(char.charCodeAt(0), d);
-					text += String.fromCharCode((m%n));
+					dec += String.fromCharCode(m%n);
 				});
-				this.setText(text);
+				this.setText(dec);
 			}
 		}
 
@@ -80,7 +78,7 @@
 			let test1 = new cryptography();
 
 			test1.setText(textInput);
-			test1.public_key(223, 143);
+			test1.public_key(143, 7); // para: n, e
 
 			document.getElementById("plain").innerHTML = "Plain Text:  " + test1.text;
 			document.getElementById("rcode").innerHTML = "Encrypted:  " + test1.code;
@@ -91,10 +89,10 @@
 			let test2 = new cryptography();
 
 			test2.setCode(codeInput);
-			test2.private_key(7, 143);
-
-			document.getElementById("code").innerText = "Encrypted:  " + test2.code;
+			test2.private_key(143, 223); // para: n, d
+			
 			document.getElementById("rplain").innerText = "Plain Text:  " + test2.text;
+			document.getElementById("code").innerText = "Encrypted:  " + test2.code;
 		}
 
 	</script>	
