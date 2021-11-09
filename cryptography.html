@@ -9,36 +9,79 @@
 <body>
 	<div class="container">
 		<div class="thing"> Encryption Station </div>
-		<form>
-			<div>
-				<label> Plain Text </label>
-				<input type="text" name="plain">
-				<input type="submit" name="Encrypt">
-			</div>
-			<div>
-				Results: 
-			</div>
-		</form>
+		<div>
+			<label> Plain Text:  </label>
+			<input type="text" id="plainIn">
+			<button onclick="encrypt()">Encrypt</button>
+		</div>
+		<div>
+			<label> Results:  </label>
+			<div id="plain"> </div>
+			<div id="rcode">  </div>
+		</div>
 	</div>
 	<div class="container">
 		<div class="thing"> Decryption Station </div>
-		<form>
-			<div>
-				<label> Encrypted Text </label>
-				<input type="text" name="code">
-				<input type="submit" name="Decrypt">
-			</div>
-			<div>
-				Results: 
-			</div>
-		</form>
+		<div>
+			<label> Encrypted Text:  </label>
+			<input type="text" id="codeIn">
+			<button onclick="decrypt()">Decrypt</button>
+		</div>
+		<div>
+			<label> Results:  </label>
+			<div id="code">  </div>
+			<div id="rplain">  </div>
+		</div>
 	</div>
 
 	<script type="text/javascript">
-		function private_key (n, d){
+		class encryptionC {
+			constructor(){
+				this.text = null;
+				this.code = null;
+			}
 
-			return text;
+			setText(text){
+				this.text = text;
+			}
+
+			setCode(code){
+				this.code = code;
+			}
+
+			public_key(n, e){
+				var text = "";
+				//logic
+			}
+
+			private_key (n, d){
+				var text = "";
+				//logic
+			}
 		}
+
+		function encrypt(){
+			var textInput = document.getElementById("plainIn").value;
+			let test1 = new encryptionC();
+
+			test1.setText(textInput);
+			test1.public_key(143, 223)
+
+			document.getElementById("plain").innerHTML = "Plain Text:  "+test1.text;
+			document.getElementById("rcode").innerHTML = "Encrypted:  "+test1.code;
+		}
+
+		function decrypt(){
+			var codeInput = document.getElementById("codeIn").value;
+			let test2 = new encryptionC();
+
+			test2.setCode(codeInput);
+			test2.private_key(143, 7);
+
+			document.getElementById("code").innerText = "Encrypted:  "+test2.code;
+			document.getElementById("rplain").innerText = "Plain Text:  "+test2.text;
+		}
+
 	</script>	
 </body>
 </html>
